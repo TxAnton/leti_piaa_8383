@@ -9,7 +9,7 @@ vector<size_t> KMP(const string& sample, const string& text){
     vector<size_t> entries;//Entries array
 
     size_t last_prefix = prefix[0] = 0;//Init prefix value for zero position
-    for (size_t i=1; i<sample.length(); i++) {//Hence going from secons position
+    for (size_t i=1; i<sample.length(); i++) {//Hence going from second position
         while (last_prefix > 0 && sample[last_prefix] != sample[i])
             last_prefix = prefix[last_prefix-1];
 
@@ -20,7 +20,8 @@ vector<size_t> KMP(const string& sample, const string& text){
     }
 
     last_prefix = 0;
-    for (size_t i=0; i<text.length(); i++) {
+    for (size_t i=0; i<text.length(); i++) {//Count prefix for current positionkjhhuiuiii88899--0=;/''JJ
+        ''
         while (last_prefix > 0 && sample[last_prefix] != text[i])
             last_prefix = prefix[last_prefix-1];
 
@@ -35,11 +36,11 @@ vector<size_t> KMP(const string& sample, const string& text){
     return entries;
 }
 
-int cycle(string A, string B){
+int cycle(string A, string B){//find matching suffix in b with prefix in A i.e. part being cycled
     vector<size_t>& prefix = *new vector<size_t>(A.length());
     size_t max_prefix = 0;
     size_t last_prefix = prefix[0] = 0;
-    for (size_t i=1; i<A.length(); i++) {
+    for (size_t i=1; i<A.length(); i++) {//Prefix function for A fragment
         while (last_prefix > 0 && A[last_prefix] != A[i])
             last_prefix = prefix[last_prefix-1];
 
@@ -50,7 +51,7 @@ int cycle(string A, string B){
     }
 
     last_prefix = 0;
-    for (size_t i=0; i<B.length(); i++) {
+    for (size_t i=0; i<B.length(); i++) {//Prefix function for one position at a time
         while (last_prefix > 0 && A[last_prefix] != B[i])
             last_prefix = prefix[last_prefix-1];
 
@@ -62,7 +63,7 @@ int cycle(string A, string B){
         }
     }
 
-    for(int i = 0;i<A.length()-max_prefix;i++){
+    for(int i = 0;i<A.length()-max_prefix;i++){//Found one cycled fragment. The rest should match to define one fragment as a cycle of another
         if(A[i+max_prefix]!=B[i]){
             delete(&prefix);
             return -1;
